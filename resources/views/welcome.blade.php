@@ -1,99 +1,255 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.fronend')
+@section('content')
+    <div class="header-spacer"></div>
 
-        <title>Laravel</title>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <article class="hentry post post-standard has-post-thumbnail sticky">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+                    <div class="post-thumb">
+                        <img src="{{$first_post->featured}}" alt="seo">
+                        <div class="overlay"></div>
+                        <a href="{{$first_post->featured}}" class="link-image js-zoom-image">
+                            <i class="seoicon-zoom"></i>
+                        </a>
+                        <a href="#" class="link-post">
+                            <i class="seoicon-link-bold"></i>
+                        </a>
+                    </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                    <div class="post__content">
 
-            .full-height {
-                height: 100vh;
-            }
+                        <div class="post__content-info">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                            <h2 class="post__title entry-title ">
+                                <a href="{{route('post.single', ['slug' => $first_post->slug])}}">{{$first_post->title}}</a>
+                            </h2>
 
-            .position-ref {
-                position: relative;
-            }
+                            <div class="post-additional-info">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                                        <span class="post__date">
 
-            .content {
-                text-align: center;
-            }
+                                            <i class="seoicon-clock"></i>
 
-            .title {
-                font-size: 84px;
-            }
+                                            <time class="published" datetime="2016-04-17 12:00:00">
+                                                {{ $first_post->created_at->diffForhumans() }}
+                                            </time>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                                        </span>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                                <span class="category">
+                                            <i class="seoicon-tags"></i>
+                                            <a href="{{route('category.single',['id' => $first_post->category->id ])}}">{{$first_post->category->name}}</a>
+                                        </span>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                                <span class="post__comments">
+                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                                            6
+                                        </span>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                </article>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <article class="hentry post post-standard has-post-thumbnail sticky">
+
+                    <div class="post-thumb">
+                        <img src="{{$second_post->featured}}" alt="seo">
+                        <div class="overlay"></div>
+                        <a href="{{$second_post->featured}}" class="link-image js-zoom-image">
+                            <i class="seoicon-zoom"></i>
+                        </a>
+                        <a href="#" class="link-post">
+                            <i class="seoicon-link-bold"></i>
+                        </a>
+                    </div>
+
+                    <div class="post__content">
+
+                        <div class="post__content-info">
+
+                            <h2 class="post__title entry-title ">
+                                <a href="{{route('post.single', ['slug' => $second_post->slug])}}">{{$second_post->title}}</a>
+                            </h2>
+
+                            <div class="post-additional-info">
+
+                                        <span class="post__date">
+
+                                            <i class="seoicon-clock"></i>
+
+                                            <time class="published" datetime="2016-04-17 12:00:00">
+                                                {{ $second_post->created_at->toFormattedDateString() }}
+                                            </time>
+
+                                        </span>
+
+                                <span class="category">
+                                            <i class="seoicon-tags"></i>
+                                            <a href="{{route('category.single', ['id'=> $second_post->category->id])}}">{{ $second_post->category->name }}</a>
+                                        </span>
+
+                                <span class="post__comments">
+                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                                            6
+                                        </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+            <div class="col-lg-6">
+                <article class="hentry post post-standard has-post-thumbnail sticky">
+
+                    <div class="post-thumb">
+                        <img src="{{$third_post->featured}}" alt="seo">
+                        <div class="overlay"></div>
+                        <a href="{{$third_post->featured}}" class="link-image js-zoom-image">
+                            <i class="seoicon-zoom"></i>
+                        </a>
+                        <a href="#" class="link-post">
+                            <i class="seoicon-link-bold"></i>
+                        </a>
+                    </div>
+
+                    <div class="post__content">
+
+                        <div class="post__content-info">
+
+                            <h2 class="post__title entry-title ">
+                                <a href="{{ route('post.single', ['slug'=> $third_post->slug ])}}">{{$third_post->title}}</a>
+                            </h2>
+
+                            <div class="post-additional-info">
+
+                                        <span class="post__date">
+
+                                            <i class="seoicon-clock"></i>
+
+                                            <time class="published" datetime="2016-04-17 12:00:00">
+                                                {{$third_post->created_at->toFormattedDateString()}}
+                                            </time>
+
+                                        </span>
+
+                                <span class="category">
+                                            <i class="seoicon-tags"></i>
+                                            <a href="{{route('category.single', ['id'=> $third_post->category->id])}}">{{$third_post->category->name}}</a>
+                                        </span>
+
+                                <span class="post__comments">
+                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i></a>
+                                            6
+                                        </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row medium-padding120 bg-border-color">
+            <div class="container">
+                <div class="col-lg-12">
+                    <div class="offers">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="heading">
+                                    <h4 class="h1 heading-title">{{$career->name}}</h4>
+                                    <div class="heading-line">
+                                        <span class="short-line"></span>
+                                        <span class="long-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="case-item-wrap">
+                                @foreach($career->posts->take(3) as $post)
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="case-item">
+                                            <div class="case-item__thumb">
+                                                <img src="{{ $post->featured }}" alt="our case">
+                                            </div>
+                                            <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug' => $post->slug])}}">{{ $post->title }}</a></h6>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padded-50"></div>
+                    <div class="offers">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="heading">
+                                    <h4 class="h1 heading-title">{{$wordpress->name}}</h4>
+                                    <div class="heading-line">
+                                        <span class="short-line"></span>
+                                        <span class="long-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="case-item-wrap">
+                                @foreach($wordpress->posts->take(3) as $word)
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="case-item">
+                                            <div class="case-item__thumb">
+                                                <img src="{{ $word->featured }}" alt="our case">
+                                            </div>
+                                            <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug'=> $word->slug])}}">{{ $word->title }}</a></h6>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="padded-50"></div>
+                    <div class="offers">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="heading">
+                                    <h4 class="h1 heading-title">{{$laravel->name}}</h4>
+                                    <div class="heading-line">
+                                        <span class="short-line"></span>
+                                        <span class="long-line"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach($laravel->posts->take(3) as $lara)
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="case-item">
+                                        <div class="case-item__thumb">
+                                            <img src="{{ $lara->featured }}" alt="our case">
+                                        </div>
+                                        <h6 class="case-item__title text-center"><a href="{{route('post.single', ['slug'=> $lara->slug])}}">{{ $lara->title }}</a></h6>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="padded-50"></div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
